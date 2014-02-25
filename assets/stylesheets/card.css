@@ -1,0 +1,60 @@
+.head {
+	display: inline-block;
+	position: relative;
+	padding: 20px;
+	width: 520px;
+}
+
+.head .logo {
+	display: inline-block;
+	background: url('../images/logo.png') no-repeat;
+	background-size: 100px 100px;
+	background-position: 0px 8px;
+	color: #804040;
+	padding: 15px 0px 15px 120px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.tail {
+	display: inline-block;
+	position: absolute;
+	top: 100px;
+	width: 620px;
+	text-align: left;
+}
+
+.tail .top {
+	text-align: left;
+	color: #804040;
+	padding: 35px;
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+
+.tail .top .line {
+	display: inline-block;
+	width: 250px;
+	margin-right: 0px;
+	margin-left: 22px;
+}
+
+.line {
+	display: inline;
+	margin-right: 100px;
+}
+
+.line p {
+	display: inline;
+	padding: 0px 10px;
+	color: #804040;
+}
+
+table {
+	margin: 20px auto;
+}
+
+td.num {
+	border: 1px solid #aaaaaa;
+}

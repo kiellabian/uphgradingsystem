@@ -1,0 +1,51 @@
+body {
+	background: url('../images/logo.png') no-repeat;
+	background-size: 620px 620px;
+	background-position: -70px 70px;
+	overflow: hidden;
+}
+
+body:before {
+	background: #ffffff;
+	opacity: 0.75;
+	content: "";
+	position: absolute;
+	display: inline-block;
+	height: 700px;
+	width: 600px;
+	z-index: 0;
+}
+
+.content {
+	text-align: center;
+}
+
+h1 {
+	margin-top: 150px;
+	font-size: 36px;
+}
+
+.login-box {
+	display: block;
+	margin: auto;
+	margin-top: 30px;
+	width: 360px;
+}
+
+.field input[type="submit"] {
+	margin-right: 42px;
+	width: 70px;
+}
+
+a.login {
+	position: absolute;
+	font-size: 15px;
+	right: 10px;
+	top: 110px;
+	color: #008040;
+	letter-spacing: 0px;
+}
+
+a.login:hover {
+	color: #20a060;
+}
