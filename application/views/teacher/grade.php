@@ -14,16 +14,15 @@
 			<ul>
 				<li class="current"><?= anchor('teacher/grade', 'Enter Grades'); ?></li>
 				<li><?= anchor('teacher/homeroom', 'Homeroom'); ?></li>
-				<li><?= anchor('teacher/cards', 'View Report Cards'); ?></li>
 			</ul>
 		</div>
 
 		<div class="main">
 			<ul class="sections">
-				<li><?= anchor('teacher/grade_section', '8 - Bartlett'); ?></li>
-				<li><?= anchor('teacher/grade_section', '8 - Villamor'); ?></li>
-				<li><?= anchor('teacher/grade_section', '9 - Paterno'); ?></li>
-				<li><?= anchor('teacher/grade_section', '9 - Asiong'); ?></li>
+				<li><?= anchor('teacher/grade_section/1', 'Biology 8'); ?></li>
+				<li><?= anchor('teacher/grade_section/2', 'Mathematics 7'); ?></li>
+				<li><?= anchor('teacher/grade_section/3', 'Values Education 666'); ?></li>
+				<li><?= anchor('teacher/grade_section/4', 'Pornography XXX'); ?></li>
 			</ul>
 		</div>
 

@@ -10,7 +10,7 @@ class Teacher extends CI_Controller {
 		$this->load->view('teacher/grade');
 	}
 
-	public function grade_section() {
+	public function grade_section($subject_id) {
 		$this->load->view('teacher/grade_section');
 	}
 
@@ -18,19 +18,15 @@ class Teacher extends CI_Controller {
 		$this->load->view('teacher/homeroom');
 	}
 
-	public function pces() {
+	public function pces($student_id) {
 		$this->load->view('teacher/pces');
 	}
 
-	public function attendance() {
+	public function attendance($student_id) {
 		$this->load->view('teacher/attendance');
 	}
 
-	public function cards() {
-		$this->load->view('teacher/cards');
-	}
-
-	public function report_card() {
+	public function report_card($student_id) {
 		$this->load->view('report_card');
 	}
 

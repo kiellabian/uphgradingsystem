@@ -14,7 +14,6 @@
 			<ul>
 				<li><?= anchor('teacher/grade', 'Enter Grades'); ?></li>
 				<li class="current"><?= anchor('teacher/homeroom', 'Homeroom'); ?></li>
-				<li><?= anchor('teacher/cards', 'View Report Cards'); ?></li>
 			</ul>
 		</div>
 

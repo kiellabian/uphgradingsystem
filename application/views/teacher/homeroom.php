@@ -14,7 +14,6 @@
 			<ul>
 				<li><?= anchor('teacher/grade', 'Enter Grades'); ?></li>
 				<li class="current"><?= anchor('teacher/homeroom', 'Homeroom'); ?></li>
-				<li><?= anchor('teacher/cards', 'View Report Cards'); ?></li>
 			</ul>
 		</div>
 
@@ -25,23 +24,27 @@
 				<table>
 					<tr>
 						<td class="head4">Lorem, Ipsum</td>
-						<td><?= anchor('teacher/pces', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/pces/1', '<button>PCES</button>'); ?></td>
+						<td><?= anchor('teacher/attendance/1', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/report_card/1', '<button>Report Card</button>'); ?></td>
 					</tr>
 					<tr>
 						<td class="head4">Sit, Amet</td>
-						<td><?= anchor('teacher/pces', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/pces/2', '<button>PCES</button>'); ?></td>
+						<td><?= anchor('teacher/attendance/2', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/report_card/2', '<button>Report Card</button>'); ?></td>
 					</tr>
 					<tr>
 						<td class="head4">Zumba, Exhersis</td>
-						<td><?= anchor('teacher/pces', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/pces/3', '<button>PCES</button>'); ?></td>
+						<td><?= anchor('teacher/attendance/3', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/report_card/3', '<button>Report Card</button>'); ?></td>
 					</tr>
 					<tr>
 						<td class="head4">Zz, Zzzz</td>
-						<td><?= anchor('teacher/pces', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/pces/4', '<button>PCES</button>'); ?></td>
+						<td><?= anchor('teacher/attendance/4', '<button>Attendance</button>'); ?></td>
+						<td><?= anchor('teacher/report_card/4', '<button>Report Card</button>'); ?></td>
 					</tr>
 				</table>
 			</div>
