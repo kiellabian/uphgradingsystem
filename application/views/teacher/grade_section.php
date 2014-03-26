@@ -20,8 +20,58 @@
 		<div class="main">
 			<h1>Biology 8</h1>
 
+			<div class="section" id="0">
+				<h3 onclick="toggle(0)">8 - Bartlett</h3>
+				<?= form_open('teacher/grade_section'); ?>
+					<div class="table">
+					<table>
+						<tr>
+							<td></td>
+							<td class="head2">1st</td>
+							<td class="head2">2nd</td>
+							<td class="head2">3rd</td>
+							<td class="head2">4th</td>
+						</tr>
+						<tr>
+							<td class="head3">Lorem, Ipsum</td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="head3">Sit, Amet</td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="head3">Zumba, Exhersis</td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="head3">Zz, Zzzz</td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+					</table>
+					</div>
+
+					<div class="field">
+						<input type="submit" class="floatleft" value="Save">
+					</div>
+
+				<?= form_close(); ?>
+			</div>
+
 			<div class="section" id="1">
-				<h3 onclick="toggle(1)">8 - Bartlett</h3>
+				<h3 onclick="toggle(1)">8 - Vajayjay</h3>
 				<?= form_open('teacher/grade_section'); ?>
 					<div class="table">
 					<table>
@@ -85,7 +135,13 @@
 		};
 
 		function toggle(id) {
-
+			if (flags[id]) {
+				flags[id] = !flags[id];
+				sections[id].style.height = "60px";
+			} else {
+				flags[id] = !flags[id];
+				sections[id].style.height = "auto";
+			}
 		}
 	</script>
 
