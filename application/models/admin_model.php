@@ -145,5 +145,8 @@
 			$this->db->query("UPDATE teachers SET year_sem_id = '$year_sem_id', subject_id = '$subject_id', teacher_id = '$teacher_id', section_id = '$section_id' WHERE id = '$id'");
 		}
 		
+		function allStudents($year_sem_id) {
+			
+		}
 	}
 ?>

@@ -11,11 +11,11 @@
 		}
 		
 		function getSection($section_id) {
-			$query = $this->db->query("SELECT  * FROM sections WHERE id = '$section_id'");
+			$query = $this->db->query("SELECT  * FROM sections INNER JOIN year_level ON year_level.id = sections.year_level_id WHERE sections.id = '$section_id'");
 			return $query->result();
 		}
 
-		function getSubjectSections($class_id) {
+		function getSubjectSections($classes_id) {
 			$query = $this->db->query("SELECT  * FROM classes INNER JOIN sections ON classes.section_id = sections.id WHERE classes.id = '$class_id'");
 			return $query->result();
 		}
