@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 28, 2014 at 06:29 PM
--- Server version: 5.6.14
--- PHP Version: 5.5.6
+-- Host: localhost
+-- Generation Time: Mar 28, 2014 at 10:11 PM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,6 +33,11 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `admin`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +57,11 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   KEY `attendance_ibfk_1` (`year_id`),
   KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `attendance`
+--
+
 
 -- --------------------------------------------------------
 
@@ -93,7 +102,16 @@ CREATE TABLE IF NOT EXISTS `classes` (
   KEY `subject_id` (`subject_id`),
   KEY `teacher_id` (`teacher_id`),
   KEY `section_id` (`section_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `classes`
+--
+
+INSERT INTO `classes` (`id`, `year_sem_id`, `subject_id`, `teacher_id`, `section_id`) VALUES
+(5, 13, 1, 1, 10),
+(6, 13, 2, 1, 11),
+(7, 13, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -111,6 +129,11 @@ CREATE TABLE IF NOT EXISTS `grades` (
   KEY `grades_ibfk_2` (`class_id`),
   KEY `student_year_id` (`student_year_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `grades`
+--
+
 
 -- --------------------------------------------------------
 
@@ -159,6 +182,11 @@ CREATE TABLE IF NOT EXISTS `pces` (
   KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `pces`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -178,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `sections` (
 --
 
 INSERT INTO `sections` (`id`, `year_level_id`, `section_name`) VALUES
-(7, 1, 'Bartlett'),
+(1, 1, 'Bartlett'),
 (8, 2, 'Villamor'),
 (9, 3, 'Benton'),
 (10, 4, 'Palma'),
@@ -208,6 +236,8 @@ CREATE TABLE IF NOT EXISTS `students` (
 --
 
 INSERT INTO `students` (`id`, `first_name`, `last_name`, `middle_name`, `gender`, `age`, `year_of_admission`) VALUES
+(1, 'John', 'Dino', '', 'male', 68, 9),
+(2, 'Asiong', 'Kingpin', '', 'male', 18, 9),
 (3, 'Jessa May', 'Sayson', 'Robledo', 'Female', 19, 12),
 (4, 'Jay Arnel', 'Bilocura', 'dela Peña', 'Male', 18, 12);
 
@@ -226,7 +256,15 @@ CREATE TABLE IF NOT EXISTS `student_year` (
   KEY `sys_id` (`sys_id`),
   KEY `student_id` (`student_id`),
   KEY `section_id` (`section_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `student_year`
+--
+
+INSERT INTO `student_year` (`id`, `student_id`, `section_id`, `sys_id`) VALUES
+(3, 1, 1, 13),
+(4, 2, 1, 13);
 
 -- --------------------------------------------------------
 
@@ -286,7 +324,14 @@ CREATE TABLE IF NOT EXISTS `teacher_sections` (
   KEY `teacher_id` (`teacher_id`),
   KEY `year_sem_id` (`year_sem_id`),
   KEY `section_id` (`section_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+
+--
+-- Dumping data for table `teacher_sections`
+--
+
+INSERT INTO `teacher_sections` (`id`, `teacher_id`, `section_id`, `year_sem_id`) VALUES
+(21, 1, 1, 13);
 
 -- --------------------------------------------------------
 
@@ -325,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `users`
@@ -334,8 +379,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `type`) VALUES
 (1, 'paw2', 'paw2', 'teacher'),
 (2, 'paw2', 'paw2', 'teacher'),
-(3, 'jissami', 'jisa', 'student'),
-(4, 'ji-arnil', 'arnil', 'student');
+(3, '10-0001', 'jisa', 'student'),
+(4, '10-0002', 'arnil', 'student'),
+(5, '11-0001', 'paw2', 'student'),
+(6, '11-0002', 'paw2', 'student'),
+(17, 'kiel', 'kiel', 'admin');
 
 -- --------------------------------------------------------
 
@@ -494,7 +542,3 @@ ALTER TABLE `teacher_sections`
 --
 ALTER TABLE `year_sem`
   ADD CONSTRAINT `year_sem_ibfk_1` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

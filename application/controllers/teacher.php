@@ -39,9 +39,18 @@ class Teacher extends CI_Controller {
 		$subject = $this->teacher->getSubject($subject_id);
 		$sections = $this->teacher->getSubjectSections($subject_id, $this->session->userdata('user_id'), $this->session->userdata('sys'));
 		$students = array();
+		$grade = array();
 		foreach ($sections as $key => $value) {
 			$students[$key] = $this->teacher->getSectionStudents($value->section_id, $this->session->userdata('sys'));
+			foreach ($students[$key] as $v) {
+				$grade[$v->id] = $this->teacher->getGrades($v->id, $subject_id, $this->session->userdata('sys'));
+			}
 		}
+
+		// echo '<pre>';
+		// print_r($students);
+		// echo '</pre>';
+
 		$data = array('subject' => $subject, 'sections' => $sections, 'students' => $students);
 		$this->load->view('teacher/grade_section', $data);
 	}

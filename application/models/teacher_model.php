@@ -47,7 +47,7 @@
 
 		function getAttendance($student_id, $year_id) {
 			$query = $this->db->query("SELECT  * FROM attendance WHERE student_id = '$student_id' AND year_id = '$year_id'");
-			return $query->result();			
+			return $query->result();
 		}
 
 		function getGrades($student_id, $subject_id, $year_sem_id) {
@@ -61,7 +61,7 @@
 			if (sizeof($result) == 0) {
 				$this->db->query("INSERT INTO pces (student_id, year_id, trait_id, period, grade) VALUES ('$student_id', '$year_id', '$trait_id', '$period', '$grade')");	
 			} else {
-				$this->db->query("UPDATE pces SET grade = '$grade' WHERE student_id = '$student_id' AND year_id = '$year_id' AND trait_id = '$trait_id' AND period = '$period'");	
+				$this->db->query("UPDATE pces SET grade = '$grade' WHERE student_id = '$student_id' AND year_id = '$year_id' AND trait_id = '$trait_id' AND period = '$period'");
 			}	
 		}
 
