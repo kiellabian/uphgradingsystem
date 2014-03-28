@@ -45,8 +45,8 @@
 			return $query->result();			
 		}
 
-		function getGrades($student_year, $class_id) {
-			$query = $this->db->query("SELECT * FROM grades WHERE class_id = '$class_id' AND student_year_id = '$student_year'");
+		function getGrades($student_id, $class_id) {
+			$query = $this->db->query("SELECT * FROM classes INNER JOIN student_year ON classes.year_sem_id = student_year.sys_id AND classes.section_id = student_year.section_id INNER JOIN grades ON grades.student_year_id = student_year.student_id AND grades.class_id = classes.id WHERE grades.class_id = '$class_id' AND grades.student_year_id = '$student_year'");
 			return $query->result();
 		}
 
