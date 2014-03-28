@@ -71,7 +71,7 @@
 			$this->db->query("INSERT INTO sections(name) VALUES ('Sison')");
 			$this->db->query("INSERT INTO sections(name) VALUES ('Bocobo')");
 		}
-		}
+
 		function editSection($id, $section_name) {
 			$this->db->query("UPDATE sections SET name = '$section_name' WHERE id = '$id'");	
 		}
@@ -145,6 +145,13 @@
 			$this->db->query("UPDATE teachers SET year_sem_id = '$year_sem_id', subject_id = '$subject_id', teacher_id = '$teacher_id', section_id = '$section_id' WHERE id = '$id'");
 		}
 		
-		
+		function initialPces() {
+			$query = $this->db->query("SELECT * FROM traits");
+			$result = $query->result();
+			$size = size($result);
+			for ($i = 0; $i < $size; $i++) {
+
+			}
+		}	
 	}
 ?>
