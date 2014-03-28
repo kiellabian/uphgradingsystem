@@ -5,7 +5,6 @@
 			parent::__construct();
 		}
 
-
 		function getSubjects($teacher_id, $year_sem_id) {
 			$query = $this->db->query("SELECT  * FROM classes INNER JOIN subjects ON classes.subject_id = subjects.id WHERE classes.teacher_id = '$teacher_id' AND classes.year_sem_id = '$year_sem_id'");
 			return $query->result();
@@ -26,7 +25,7 @@
 
 		function getTeacher($teacher_id) {
 			$query = $this->db->query("SELECT  * FROM teacher WHERE id = '$teacher_id'");
-			return $query->result()-
+			return $query->result();
 		}
 
 		function getHomeroom($teacher_id) {

@@ -6,9 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url() . 'assets/stylesheets/overall.css'; ?>">
 	<title>UP HIGH Grading System</title>
 </head>
-<body>
+<body onload="showNotif()">
 	<div class="left"></div>
 	<div class="content">
+		<?php $this->load->view('notif.php'); ?>
 		<?php $this->load->view('heading'); ?>
 		<div class="side">
 			<ul>
@@ -122,7 +123,7 @@
 
 		</div>
 
-		<?= anchor('session/index', '<div class="logout"></div>'); ?>
+		<?= anchor('session/logout', '<div class="logout"></div>'); ?>
 
 	</div>
 
