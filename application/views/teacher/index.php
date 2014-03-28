@@ -15,7 +15,7 @@
 			<?= form_open('teacher/year_sem', array('method'=>'post')); ?>
 				<div class="field">
 					<select name="year">
-						<option value="-1" disabled selected>Chooose School Year</option>
+						<option value="-1" disabled selected>Chooose Semester</option>
 						<?php foreach ($sys as $value) : ?>
 							<option value="<?= $value->id ?>"><?= $value->year . (($value->sem == 1) ? ' 1st' : ' 2nd') . ' Sem' ?></option>
 						<?php endforeach; ?>

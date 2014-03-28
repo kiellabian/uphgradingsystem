@@ -38,13 +38,22 @@ class Session extends CI_Controller {
 	}
 
 	public function login_teacher() {
-		$user = $this->user->getUser($_POST['username'], $_POST['password'], 'teacher');
+		$teacher = $this->user->getUser($_POST['username'], $_POST['password'], 'teacher');
+		$admin = $this->user->getUser($_POST['username'], $_POST['password'], 'admin');
 
-		if ($user) {
+		if ($teacher || $admin) {
+			$user = ($teacher) ? $teacher : $admin;
+
 			$this->session->set_userdata('user_id', $user[0]->id);
 			$this->session->set_userdata('user_type', $user[0]->type);
-			$this->session->set_flashdata('notice', $user[0]->username);
-			redirect('teacher/index');
+			// $this->session->set_flashdata('notice', $user[0]->username);
+
+			if ($teacher) {
+				redirect('teacher/index');	
+			} else {
+				redirect('admin/index');
+			}
+			
 		} else {
 			$this->session->set_flashdata('alert', 'Incorrect username or password.');
 			redirect('session/index');

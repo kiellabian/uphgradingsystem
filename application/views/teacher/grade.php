@@ -20,10 +20,9 @@
 
 		<div class="main">
 			<ul class="sections">
-				<li><?= anchor('teacher/grade_section/1', 'Biology 8'); ?></li>
-				<li><?= anchor('teacher/grade_section/2', 'Mathematics 7'); ?></li>
-				<li><?= anchor('teacher/grade_section/3', 'Values Education 666'); ?></li>
-				<li><?= anchor('teacher/grade_section/4', 'Pornography XXX'); ?></li>
+				<?php foreach ($subjects as $value) : ?>
+					<li><?= anchor('teacher/grade_section/'.$value->id, $value->subject_name); ?></li>
+				<?php endforeach; ?>
 			</ul>
 		</div>
 

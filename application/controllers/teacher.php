@@ -8,6 +8,7 @@ class Teacher extends CI_Controller {
 			$this->session->set_flashdata('alert', 'You\'re not logged in.');
 			redirect('session/index');
 		}
+		$this->load->model('teacher_model', 'teacher');
 		$this->load->model('meta_model', 'meta');
 	}
 
@@ -29,7 +30,9 @@ class Teacher extends CI_Controller {
 	}
 
 	public function grade() {
-		$this->load->view('teacher/grade');
+		$subjects = $this->teacher->getSubjects($this->session->userdata('user_id'), $this->session->userdata('sys'));
+		$data = array('subjects' => $subjects);
+		$this->load->view('teacher/grade', $data);
 	}
 
 	public function grade_section($subject_id) {
@@ -45,7 +48,6 @@ class Teacher extends CI_Controller {
 	}
 
 	public function attendance($student_id) {
-		$this->session->set_flashdata('notice', 'Attendance fuck!');
 		$this->load->view('teacher/attendance');
 	}
 

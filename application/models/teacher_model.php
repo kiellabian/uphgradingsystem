@@ -12,7 +12,7 @@
 
 		function getSection($section_id) {
 			$query = $this->db->query("SELECT  * FROM sections WHERE id = '$section_id'");
-			return $query->result();	
+			return $query->result();
 		}
 
 		function getClassStudents($class_id) {
