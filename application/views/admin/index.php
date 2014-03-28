@@ -26,7 +26,7 @@
 			<?= form_close(); ?>
 		</div>
 
-	<?= anchor('session/index', '<div class="logout"></div>'); ?>
+	<?= anchor('session/logout', '<div class="logout"></div>'); ?>
 
 	</div>
 </body>

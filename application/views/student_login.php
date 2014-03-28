@@ -18,9 +18,9 @@
 			<div class="login-box">
 				<div class="field">
 					<label>student no.</label>
-					<input type="text" name="username" maxlength="2" required>
+					<input type="text" name="username[0]" maxlength="2" required>
 					<label class="dash"> - </label>
-					<input type="text" name="username" maxlength="4" required>
+					<input type="text" name="username[1]" maxlength="4" required>
 				</div>
 				<div class="field">
 					<label>password</label>

@@ -19,20 +19,24 @@
 		</div>
 
 		<div class="main">
-			<h1>8 - Bartlett</h1>
-		
-			<div class="table">
-				<table>
-					<?php foreach ($students as $value) : ?>
-						<tr>
-							<td class="head4"><?= $value->last_name . ', ' . $value->first_name ?></td>
-							<td><?= anchor('teacher/pces/'.$value->student_id, '<button>PCES</button>'); ?></td>
-							<td><?= anchor('teacher/attendance/'.$value->student_id, '<button>Attendance</button>'); ?></td>
-							<td><?= anchor('teacher/report_card/'.$value->student_id, '<button>Report Card</button>'); ?></td>
-						</tr>
-					<?php endforeach; ?>
-				</table>
-			</div>
+			<?php if ($homeroom): ?>
+				<h1><?= $homeroom[0]->year_level . ' - ' . $homeroom[0]->section_name ?></h1>
+				<div class="table">
+					<table>
+						<?php foreach ($students as $value) : ?>
+							<tr>
+								<td class="head4"><?= $value->last_name . ', ' . $value->first_name ?></td>
+								<td><?= anchor('teacher/pces/'.$value->student_id, '<button>PCES</button>'); ?></td>
+								<td><?= anchor('teacher/attendance/'.$value->student_id, '<button>Attendance</button>'); ?></td>
+								<td><?= anchor('teacher/report_card/'.$value->student_id, '<button>Report Card</button>'); ?></td>
+							</tr>
+						<?php endforeach; ?>
+					</table>
+				</div>
+			<?php else : ?>
+				<h3>You are not an advicer.</h3>
+			<?php endif ?>
+			
 
 		</div>
 

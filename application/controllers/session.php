@@ -63,12 +63,12 @@ class Session extends CI_Controller {
 	}
 
 	public function login_student() {
-		$user = $this->user->getUser($_POST['username'], $_POST['password'], 'student');
+		$username = $_POST['username'][0] . '-' . $_POST['username'][1];
+		$user = $this->user->getUser($username, $_POST['password'], 'student');
 
 		if ($user) {
 			$this->session->set_userdata('user_id', $user[0]->id);
 			$this->session->set_userdata('user_type', $user[0]->type);
-			$this->session->set_flashdata('notice', $user[0]->username);
 			redirect('student/index');
 		} else {
 			redirect('session/student_login');

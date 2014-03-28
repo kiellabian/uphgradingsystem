@@ -21,7 +21,7 @@
 		<div class="main">
 			<ul class="sections">
 				<?php if (sizeof($subjects) == 0): ?>
-						<li>You are not yet assigned to any subject.</li>
+					<h3>You are not yet assigned to any subject.</h3>
 				<?php endif; ?>
 				<?php foreach ($subjects as $value) : ?>
 					<li><?= anchor('teacher/grade_section/'.$value->id, $value->subject_name); ?></li>

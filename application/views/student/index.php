@@ -6,18 +6,19 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url() . 'assets/stylesheets/overall.css'; ?>">
 	<title>UP HIGH Grading System</title>
 </head>
-<body>
+<body onload="showNotif()">
 	<div class="left"></div>
 	<div class="content">
+		<?php $this->load->view('notif.php'); ?>
 		<?php $this->load->view('heading'); ?>
 		<div class="year">
-			<?= form_open('student/card', array('method'=>'post')); ?>
+			<?= form_open('student/year_sem', array('method'=>'post')); ?>
 				<div class="field">
 					<select name="year">
-						<option disabled selected>Chooose School Year</option>
-						<option>2011 - 2012</option>
-						<option>2012 - 2013</option>
-						<option>2013 - 2014</option>
+						<option value="-1" disabled selected>Chooose Semester</option>
+						<?php foreach ($sys as $value) : ?>
+							<option value="<?= $value->sys ?>"><?= $value->year . (($value->sem == 1) ? ' 1st' : ' 2nd') . ' Sem' ?></option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 				<div class="field">
@@ -26,7 +27,7 @@
 			<?= form_close(); ?>
 		</div>
 
-	<?= anchor('session/index', '<div class="logout"></div>'); ?>
+	<?= anchor('session/logout', '<div class="logout"></div>'); ?>
 
 	</div>
 </body>
