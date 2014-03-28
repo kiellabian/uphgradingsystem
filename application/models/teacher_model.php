@@ -47,17 +47,18 @@
 		}
 
 
-		function setGrades($student_year, $class_id, $period, $grade) {
+		function editGrades($student_year, $class_id, $period, $grade) {
 			$query = $this->db->query("UPDATE grades SET grade = '$grade' WHERE class_id = '$class_id' AND student_year_id = '$student_year' AND period = '$period'");	
 		}
 
-		function setPces($student_year, $trait_id, $period, $value) {
+		function editPces($student_year, $trait_id, $period, $value) {
 			$query = $this->db->query("UPDATE pces SET grade = '$value' WHERE syl_id = '$student_year' AND trait_id = $trait_id AND period = '$period'");	
 		}
 
-		function setAttendance($student_year, $month_id, $attendance_trait_id, $value) {
+		function editAttendance($student_year, $month_id, $attendance_trait_id, $value) {
 			$query = $this->db->query("UPDATE grades SET value = '$value' WHERE class_id = '$class_id' AND student_year_id = '$student_year' AND month_id = '$month_id' AND attendance_trait_id = '$attendance_trait_id'");	
 		}
 
+				
 	}
 ?>

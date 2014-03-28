@@ -14,12 +14,30 @@
 			$this->db->query("INSERT INTO traits(name) VALUES ('Initiative & Resourcefulness')");
 			$this->db->query("INSERT INTO traits(name) VALUES ('Leadership')");
 		}
+		function editTrait($id, $trait_name) {
+			$this->db->query("UPDATE traits SET name = '$trait_name' WHERE id = '$id'");	
+		}
+		function newTrait($name) {
+			$this->db->query("INSERT INTO traits(name) VALUES ('$name')");
+		}
+		function deleteTrait($id) {
+			$this->db->query("DELETE FROM traits WHERE id = '$id'");
+		}
 
 		function initialAttendanceTraits() {
 			$this->db->query("INSERT INTO attendance_trait(name) VALUES ('No. of School Days')");
 			$this->db->query("INSERT INTO attendance_trait(name) VALUES ('No. of Days Present')");
 			$this->db->query("INSERT INTO attendance_trait(name) VALUES ('No. of Times Tardy')");
 			$this->db->query("INSERT INTO attendance_trait(name) VALUES ('No. of Classes Cut')");
+		}
+		function editAttendanceTrait($id, $trait_name) {
+			$this->db->query("UPDATE attendance_trait SET name = '$trait_name' WHERE id = '$id'");	
+		}
+		function newAttendanceTrait($name) {
+			$this->db->query("INSERT INTO attendance_trait(name) VALUES ('$name')");
+		}
+		function deleteAttendanceTrait($id) {
+			$this->db->query("DELETE FROM attendance_trait WHERE id = '$id'");
 		}
 
 		function initialMonths() {
@@ -34,6 +52,17 @@
 			$this->db->query("INSERT INTO months(name) VALUES ('April')");
 			$this->db->query("INSERT INTO months(name) VALUES ('May')");
 		}
+		}
+		function editMonth($id, $month_name) {
+			$this->db->query("UPDATE months SET name = '$month_name' WHERE id = '$id'");	
+		}
+		function newMonth($name) {
+			$this->db->query("INSERT INTO months(name) VALUES ('$name')");
+		}
+		function deleteMonth($id) {
+			$this->db->query("DELETE FROM months WHERE id = '$id'");
+		}
+
 		function initialSection() {
 			$this->db->query("INSERT INTO sections(name) VALUES ('Bartlett')");
 			$this->db->query("INSERT INTO sections(name) VALUES ('Villamor')");
@@ -41,6 +70,16 @@
 			$this->db->query("INSERT INTO sections(name) VALUES ('Palma')");
 			$this->db->query("INSERT INTO sections(name) VALUES ('Sison')");
 			$this->db->query("INSERT INTO sections(name) VALUES ('Bocobo')");
+		}
+		}
+		function editSection($id, $section_name) {
+			$this->db->query("UPDATE sections SET name = '$section_name' WHERE id = '$id'");	
+		}
+		function newSection($name) {
+			$this->db->query("INSERT INTO sections(name) VALUES ('$name')");
+		}
+		function deleteSection($id) {
+			$this->db->query("DELETE FROM section WHERE id = '$id'");
 		}
 
 		function initialYearLevel() {
@@ -50,6 +89,16 @@
 			$this->db->query("INSERT INTO year_level(year_level) VALUES ('II')");
 			$this->db->query("INSERT INTO year_level(year_level) VALUES ('III')");
 			$this->db->query("INSERT INTO year_level(year_level) VALUES ('IV')");
+		}
+		}
+		function editYearLevel($id, $level_name) {
+			$this->db->query("UPDATE year_level SET year_level = '$level_name' WHERE id = '$id'");	
+		}
+		function newYearLevel($name) {
+			$this->db->query("INSERT INTO year_level(year_level) VALUES ('$name')");
+		}
+		function deleteYearLevel($id) {
+			$this->db->query("DELETE FROM year_level WHERE id = '$id'");
 		}
 
 		function newStudent($id, $firstname, $middlename, $lastname, $age, $gender) {
@@ -95,6 +144,7 @@
 		function editClass($id, $year_sem_id, $subject_id, $teacher_id, $year_level, $section_id) {
 			$this->db->query("UPDATE teachers SET year_sem_id = '$year_sem_id', subject_id = '$subject_id', teacher_id = '$teacher_id', section_id = '$section_id' WHERE id = '$id'");
 		}
+		
 		
 	}
 ?>
