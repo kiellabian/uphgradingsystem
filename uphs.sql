@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2014 at 01:50 PM
+-- Generation Time: Mar 28, 2014 at 02:50 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -42,14 +42,16 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 CREATE TABLE IF NOT EXISTS `attendance` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `syl_id` int(255) NOT NULL,
+  `student_id` int(255) NOT NULL,
+  `year_id` int(255) NOT NULL,
   `month_id` int(255) NOT NULL,
   `attendance_trait_id` int(255) NOT NULL,
   `value` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `syl_id` (`syl_id`),
   KEY `month_id` (`month_id`),
-  KEY `attendance_trait_id` (`attendance_trait_id`)
+  KEY `attendance_trait_id` (`attendance_trait_id`),
+  KEY `attendance_ibfk_1` (`year_id`),
+  KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -122,13 +124,15 @@ CREATE TABLE IF NOT EXISTS `months` (
 
 CREATE TABLE IF NOT EXISTS `pces` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `syl_id` int(255) NOT NULL,
+  `student_id` int(255) NOT NULL,
+  `year_id` int(255) NOT NULL,
   `trait_id` int(255) NOT NULL,
   `period` int(255) NOT NULL,
   `grade` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `syl_id` (`syl_id`),
-  KEY `trait_id` (`trait_id`)
+  KEY `trait_id` (`trait_id`),
+  KEY `pces_ibfk_1` (`year_id`),
+  KEY `student_id` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -261,6 +265,18 @@ INSERT INTO `users` (`id`, `username`, `password`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `years`
+--
+
+CREATE TABLE IF NOT EXISTS `years` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `year` int(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `year_level`
 --
 
@@ -293,21 +309,11 @@ CREATE TABLE IF NOT EXISTS `year_section` (
 
 CREATE TABLE IF NOT EXISTS `year_sem` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `year` varchar(255) NOT NULL,
+  `year_id` int(255) NOT NULL,
   `sem` int(2) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `year_id` (`year_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `year_sem`
---
-
-INSERT INTO `year_sem` (`id`, `year`, `sem`) VALUES
-(1, '2012 - 2013', 1),
-(2, '2012 - 2013', 2),
-(3, '2013 - 2014', 1),
-(4, '2013 - 2014', 2),
-(5, '2014 - 2015', 1);
 
 --
 -- Constraints for dumped tables
@@ -323,7 +329,8 @@ ALTER TABLE `admin`
 -- Constraints for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`syl_id`) REFERENCES `student_year` (`id`),
+  ADD CONSTRAINT `attendance_ibfk_4` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`),
   ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`month_id`) REFERENCES `months` (`id`),
   ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`attendance_trait_id`) REFERENCES `attendance_trait` (`id`);
 
@@ -348,7 +355,8 @@ ALTER TABLE `grades`
 -- Constraints for table `pces`
 --
 ALTER TABLE `pces`
-  ADD CONSTRAINT `pces_ibfk_1` FOREIGN KEY (`syl_id`) REFERENCES `student_year` (`id`),
+  ADD CONSTRAINT `pces_ibfk_3` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `pces_ibfk_1` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`),
   ADD CONSTRAINT `pces_ibfk_2` FOREIGN KEY (`trait_id`) REFERENCES `traits` (`id`);
 
 --
@@ -387,6 +395,12 @@ ALTER TABLE `teacher_sections`
 ALTER TABLE `year_section`
   ADD CONSTRAINT `year_section_ibfk_1` FOREIGN KEY (`year_level_id`) REFERENCES `year_level` (`id`),
   ADD CONSTRAINT `year_section_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`);
+
+--
+-- Constraints for table `year_sem`
+--
+ALTER TABLE `year_sem`
+  ADD CONSTRAINT `year_sem_ibfk_1` FOREIGN KEY (`year_id`) REFERENCES `years` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
