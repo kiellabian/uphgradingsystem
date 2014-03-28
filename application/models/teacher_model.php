@@ -65,10 +65,14 @@
 			}	
 		}
 
-		
-		
-		function editAttendance($student_year, $month_id, $attendance_trait_id, $value) {
-			$query = $this->db->query("UPDATE grades SET value = '$value' WHERE class_id = '$class_id' AND student_year_id = '$student_year' AND month_id = '$month_id' AND attendance_trait_id = '$attendance_trait_id'");	
+		function updateAttendance($student_id, $year_id, $trait_id, $period, $grade) {
+			$query = $this->db->query("SELECT * pces WHERE student_id = '$student_id' AND year_id = '$year_id' AND trait_id = '$trait_id' AND period = '$period' AND grade = '$grade'");
+			$result = $query->result();
+			if (sizeof($result) == 0) {
+				$this->db->query("INSERT INTO pces (student_id, year_id, trait_id, period, grade) VALUES ('$student_id', '$year_id', '$trait_id', '$period', '$grade')");	
+			} else {
+				$this->db->query("UPDATE pces SET grade = '$grade' WHERE student_id = '$student_id' AND year_id = '$year_id' AND trait_id = '$trait_id' AND period = '$period'");	
+			}	
 		}
 	}
 ?>
