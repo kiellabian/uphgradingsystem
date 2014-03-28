@@ -12,17 +12,13 @@
 		<?php $this->load->view('notif.php'); ?>
 		<?php $this->load->view('heading'); ?>
 		<div class="year">
-			<?= form_open('teacher/grade', array('method'=>'post')); ?>
+			<?= form_open('teacher/year_sem', array('method'=>'post')); ?>
 				<div class="field">
 					<select name="year">
-						<option disabled selected>Chooose School Year</option>
-
+						<option value="-1" disabled selected>Chooose School Year</option>
 						<?php foreach ($sys as $value) : ?>
-							
+							<option value="<?= $value->id ?>"><?= $value->year . (($value->sem == 1) ? ' 1st' : ' 2nd') . ' Sem' ?></option>
 						<?php endforeach; ?>
-						<option>2011 - 2012</option>
-						<option>2012 - 2013</option>
-						<option>2013 - 2014</option>
 					</select>
 				</div>
 				<div class="field">

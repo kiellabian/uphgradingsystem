@@ -15,11 +15,16 @@ h2 {
 }
 
 h3 {
+	-webkit-transition: color 0.3s;
 	font-family: Century Gothic;
 	font-size: 24px;
 	font-weight: normal;
 	cursor: pointer;
 	display: inline-block;
+}
+
+h3:hover {
+	color: #008040;
 }
 
 h4 {
