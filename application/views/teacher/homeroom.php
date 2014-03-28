@@ -23,30 +23,14 @@
 		
 			<div class="table">
 				<table>
-					<tr>
-						<td class="head4">Lorem, Ipsum</td>
-						<td><?= anchor('teacher/pces/1', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance/1', '<button>Attendance</button>'); ?></td>
-						<td><?= anchor('teacher/report_card/1', '<button>Report Card</button>'); ?></td>
-					</tr>
-					<tr>
-						<td class="head4">Sit, Amet</td>
-						<td><?= anchor('teacher/pces/2', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance/2', '<button>Attendance</button>'); ?></td>
-						<td><?= anchor('teacher/report_card/2', '<button>Report Card</button>'); ?></td>
-					</tr>
-					<tr>
-						<td class="head4">Zumba, Exhersis</td>
-						<td><?= anchor('teacher/pces/3', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance/3', '<button>Attendance</button>'); ?></td>
-						<td><?= anchor('teacher/report_card/3', '<button>Report Card</button>'); ?></td>
-					</tr>
-					<tr>
-						<td class="head4">Zz, Zzzz</td>
-						<td><?= anchor('teacher/pces/4', '<button>PCES</button>'); ?></td>
-						<td><?= anchor('teacher/attendance/4', '<button>Attendance</button>'); ?></td>
-						<td><?= anchor('teacher/report_card/4', '<button>Report Card</button>'); ?></td>
-					</tr>
+					<?php foreach ($students as $value) : ?>
+						<tr>
+							<td class="head4"><?= $value->last_name . ', ' . $value->first_name ?></td>
+							<td><?= anchor('teacher/pces/'.$value->student_id, '<button>PCES</button>'); ?></td>
+							<td><?= anchor('teacher/attendance/'.$value->student_id, '<button>Attendance</button>'); ?></td>
+							<td><?= anchor('teacher/report_card/'.$value->student_id, '<button>Report Card</button>'); ?></td>
+						</tr>
+					<?php endforeach; ?>
 				</table>
 			</div>
 

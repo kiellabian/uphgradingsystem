@@ -43,11 +43,16 @@ class Teacher extends CI_Controller {
 		$homeroom = $this->teacher->getHomeroom($this->session->userdata('user_id'), $this->session->userdata('sys'));
 		$students = $this->teacher->getSectionStudents($homeroom[0]->section_id, $this->session->userdata('sys'));
 
-		// echo '<pre>';
-		// print_r($students);
-		// echo '</pre>';
+		echo '<pre>';
+		print_r($homeroom);
+		echo '</pre>';
 
-		$this->load->view('teacher/homeroom');
+		echo '<pre>';
+		print_r($students);
+		echo '</pre>';
+
+		$data = array('homeroom' => $homeroom, 'students' => $students);
+		// $this->load->view('teacher/homeroom', $data);
 	}
 
 	public function pces($student_id) {
