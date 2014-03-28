@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2014 at 03:16 PM
+-- Generation Time: Mar 28, 2014 at 05:16 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -118,8 +118,8 @@ CREATE TABLE IF NOT EXISTS `grades` (
   `period` int(2) DEFAULT NULL,
   `grade` int(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `grades_ibfk_1` (`student_year_id`),
-  KEY `grades_ibfk_2` (`class_id`)
+  KEY `grades_ibfk_2` (`class_id`),
+  KEY `student_year_id` (`student_year_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -186,12 +186,12 @@ CREATE TABLE IF NOT EXISTS `sections` (
 --
 
 INSERT INTO `sections` (`id`, `name`) VALUES
-(1, '7 -Bartlett'),
-(2, '8 - Villamor'),
-(3, 'I - Benton'),
-(4, 'II - Palma'),
-(5, 'III - Sison'),
-(6, 'IV - Bocobo');
+(1, 'Bartlett'),
+(2, 'Villamor'),
+(3, 'Benton'),
+(4, 'Palma'),
+(5, 'Sison'),
+(6, 'Bocobo');
 
 -- --------------------------------------------------------
 
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 --
 
 CREATE TABLE IF NOT EXISTS `student_year` (
-  `id` int(255) NOT NULL,
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `student_id` int(255) NOT NULL,
   `year_level_id` int(255) NOT NULL,
   `section_id` int(255) NOT NULL,
@@ -227,8 +227,8 @@ CREATE TABLE IF NOT EXISTS `student_year` (
   KEY `year_level_id` (`year_level_id`),
   KEY `section_id` (`section_id`),
   KEY `sys_id` (`sys_id`),
-  KEY `student_year_ibfk_1` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `student_id` (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -459,7 +459,7 @@ ALTER TABLE `classes`
 -- Constraints for table `grades`
 --
 ALTER TABLE `grades`
-  ADD CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student_year_id`) REFERENCES `student_year` (`id`),
+  ADD CONSTRAINT `grades_ibfk_3` FOREIGN KEY (`student_year_id`) REFERENCES `student_year` (`id`),
   ADD CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`);
 
 --
@@ -481,10 +481,10 @@ ALTER TABLE `students`
 -- Constraints for table `student_year`
 --
 ALTER TABLE `student_year`
-  ADD CONSTRAINT `student_year_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
   ADD CONSTRAINT `student_year_ibfk_2` FOREIGN KEY (`year_level_id`) REFERENCES `year_level` (`id`),
   ADD CONSTRAINT `student_year_ibfk_3` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
-  ADD CONSTRAINT `student_year_ibfk_4` FOREIGN KEY (`sys_id`) REFERENCES `year_sem` (`id`);
+  ADD CONSTRAINT `student_year_ibfk_4` FOREIGN KEY (`sys_id`) REFERENCES `year_sem` (`id`),
+  ADD CONSTRAINT `student_year_ibfk_5` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
 
 --
 -- Constraints for table `teachers`
