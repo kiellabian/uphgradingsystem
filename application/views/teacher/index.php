@@ -16,6 +16,10 @@
 				<div class="field">
 					<select name="year">
 						<option disabled selected>Chooose School Year</option>
+
+						<?php foreach ($sys as $value) : ?>
+							
+						<?php endforeach; ?>
 						<option>2011 - 2012</option>
 						<option>2012 - 2013</option>
 						<option>2013 - 2014</option>

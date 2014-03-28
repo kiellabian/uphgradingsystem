@@ -8,10 +8,18 @@ class Teacher extends CI_Controller {
 			$this->session->set_flashdata('alert', 'You\'re not logged in.');
 			redirect('session/index');
 		}
+		$this->load->model('meta_model', 'meta');
 	}
 
 	public function index() {
-		$this->load->view('teacher/index');
+		$sys = $this->meta->getYearSem();
+
+		// echo '<pre>';
+		// print_r($sys);
+		// echo '</pre>';
+
+		$data = array('sys' => $sys);
+		$this->load->view('teacher/index', $data);
 	}
 
 	public function grade() {
