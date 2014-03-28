@@ -15,8 +15,8 @@
 			return $query->result();
 		}
 
-		function getSubjectSections($classes_id) {
-			$query = $this->db->query("SELECT  * FROM classes INNER JOIN sections ON classes.section_id = sections.id WHERE classes.id = '$class_id'");
+		function getSubjectSections($class_id) {
+			$query = $this->db->query("SELECT  * FROM classes INNER JOIN sections ON classes.section_id = sections.id INNER JOIN year_level ON year_level.id = sections.year_level_id WHERE classes.id = '$class_id'");
 			return $query->result();
 		}
 		
