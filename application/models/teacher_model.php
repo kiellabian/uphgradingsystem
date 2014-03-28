@@ -63,6 +63,8 @@
 			$query = $this->db->query("SELECT * FROM classes WHERE subject_id = '$subject_id' AND year_sem_id = '$year_sem_id' AND section_id = '$section_id'");
 			$result = $query->result();
 			$class_id = $result[0]->id;
+			$query = $this->db->query("SELECT * FROM grades WHERE student_year_id = '$student_year' AND class_id = '$class_id' AND period = '$period'");
+			$result = $query->result();
 			if (sizeof($result) == 0) {
 				$this->db->query("INSERT INTO grades(student_year_id, class_id, period, grade) VALUES ('$student_year', '$class_id', '$period', '$grade')");	
 			} else {
