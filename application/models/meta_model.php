@@ -5,7 +5,7 @@
 		}
 
 		function getYearSem() {
-			$query = $this->db->query("SELECT * FROM year_sem");
+			$query = $this->db->query("SELECT * FROM year_sem ORDER BY year,sem DESC");
 			return $query->return();
 		}
 	}
