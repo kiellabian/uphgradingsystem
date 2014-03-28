@@ -56,9 +56,7 @@ class Teacher extends CI_Controller {
 	}
 
 	public function save_grade() {
-		echo '<pre>';
-		print_r($_POST);
-		echo '</pre>';
+		
 	}
 
 	public function homeroom() {
