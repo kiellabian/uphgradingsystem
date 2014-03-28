@@ -145,13 +145,5 @@
 			$this->db->query("UPDATE teachers SET year_sem_id = '$year_sem_id', subject_id = '$subject_id', teacher_id = '$teacher_id', section_id = '$section_id' WHERE id = '$id'");
 		}
 		
-		function initialPces() {
-			$query = $this->db->query("SELECT * FROM traits");
-			$result = $query->result();
-			$size = size($result);
-			for ($i = 0; $i < $size; $i++) {
-
-			}
-		}	
 	}
 ?>
