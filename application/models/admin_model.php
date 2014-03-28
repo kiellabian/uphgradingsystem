@@ -64,12 +64,12 @@
 		}
 
 		function initialSection() {
-			$this->db->query("INSERT INTO sections(name) VALUES ('Bartlett')");
-			$this->db->query("INSERT INTO sections(name) VALUES ('Villamor')");
-			$this->db->query("INSERT INTO sections(name) VALUES ('Benton')");
-			$this->db->query("INSERT INTO sections(name) VALUES ('Palma')");
-			$this->db->query("INSERT INTO sections(name) VALUES ('Sison')");
-			$this->db->query("INSERT INTO sections(name) VALUES ('Bocobo')");
+			$this->db->query("INSERT INTO sections(name) VALUES ('7 - Bartlett')");
+			$this->db->query("INSERT INTO sections(name) VALUES ('8 - Villamor')");
+			$this->db->query("INSERT INTO sections(name) VALUES ('I - Benton')");
+			$this->db->query("INSERT INTO sections(name) VALUES ('II - Palma')");
+			$this->db->query("INSERT INTO sections(name) VALUES ('III - Sison')");
+			$this->db->query("INSERT INTO sections(name) VALUES ('IV - Bocobo')");
 		}
 
 		function editSection($id, $section_name) {
@@ -90,7 +90,7 @@
 			$this->db->query("INSERT INTO year_level(year_level) VALUES ('III')");
 			$this->db->query("INSERT INTO year_level(year_level) VALUES ('IV')");
 		}
-		}
+		
 		function editYearLevel($id, $level_name) {
 			$this->db->query("UPDATE year_level SET year_level = '$level_name' WHERE id = '$id'");	
 		}
