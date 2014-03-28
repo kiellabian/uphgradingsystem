@@ -71,7 +71,7 @@ class Session extends CI_Controller {
 			$this->session->set_flashdata('notice', $user[0]->username);
 			redirect('student/index');
 		} else {
-			redirect('session/login_student');
+			redirect('session/student_login');
 		}		
 	}
 
