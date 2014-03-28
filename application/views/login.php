@@ -7,20 +7,22 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url() . 'assets/stylesheets/login.css'; ?>">
 	<title>UP HIGH Grading System</title>
 </head>
-<body>
+<body onload="showNotif()">
 	<div class="left"></div>
 	<div class="content">
+		<?php $this->load->view('notif.php'); ?>
+
 		<h1>UP HIGH Grading System</h1>
 
 		<?= form_open('session/login_teacher', 'POST'); ?>
 			<div class="login-box">
 				<div class="field">
 					<label>username</label>
-					<input type="text" name="username">
+					<input type="text" name="username" required>
 				</div>
 				<div class="field">
 					<label>password</label>
-					<input type="password" name="password">
+					<input type="password" name="password" required>
 				</div>
 				<div class="field">
 					<input type="submit" value="login">

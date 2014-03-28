@@ -5,7 +5,6 @@
 			parent::__construct();
 		}
 
-
 		function getSubjects($teacher_id, $year_sem_id) {
 			$query = $this->db->query("SELECT  * FROM classes WHERE teacher_id = '$teacher_id' AND year_sem_id = '$year_sem_id'");
 			return $query->result();
@@ -24,7 +23,7 @@
 
 		function getTeacher($teacher_id) {
 			$query = $this->db->query("SELECT  * FROM teacher WHERE id = '$teacher_id'");
-			return $query->result()-
+			return $query->result();
 		}
 
 		function getHomeroom($teacher_id) {

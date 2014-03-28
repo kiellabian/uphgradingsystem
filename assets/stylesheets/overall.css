@@ -68,6 +68,40 @@ ul li {
 	background: #008040;
 }
 
+.content .notif {
+	margin-top: -100px;
+	height: 100px;
+	display: relative;
+	cursor: default;
+	text-align: center;
+}
+
+.notif .alert {
+	-webkit-transition: opacity 1s ease 5s;
+	overflow: hidden;
+	color: #804040;
+	background: #ffaaaa;
+	border: 2px solid #804040;
+	border-radius: 5px;
+	display: inline-block;
+	padding: 10px;
+	position: relative;
+	margin-top: 30px;
+}
+
+.notif .notice {
+	-webkit-transition: opacity 1s ease 5s;
+	overflow: hidden;
+	color: #004400;
+	background: #ccffcc;
+	border: 2px solid #004400;
+	border-radius: 5px;
+	display: inline-block;
+	padding: 10px;
+	position: relative;
+	margin-top: 30px;
+}
+
 .heading {
 	text-align: center;
 	border-bottom: 1px dashed #aaaaaa;
