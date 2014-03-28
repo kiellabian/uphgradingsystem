@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2014 at 08:53 AM
+-- Generation Time: Mar 28, 2014 at 01:50 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -28,12 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `user_id` int(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `middlename` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -47,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `syl_id` int(255) NOT NULL,
   `month_id` int(255) NOT NULL,
   `attendance_trait_id` int(255) NOT NULL,
-  `value` int(255) NOT NULL,
+  `value` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `syl_id` (`syl_id`),
   KEY `month_id` (`month_id`),
@@ -127,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `pces` (
   `syl_id` int(255) NOT NULL,
   `trait_id` int(255) NOT NULL,
   `period` int(255) NOT NULL,
-  `grade` int(255) NOT NULL,
+  `grade` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `syl_id` (`syl_id`),
   KEY `trait_id` (`trait_id`)
@@ -153,7 +151,6 @@ CREATE TABLE IF NOT EXISTS `sections` (
 
 CREATE TABLE IF NOT EXISTS `students` (
   `id` int(255) NOT NULL,
-  `user_id` int(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) NOT NULL,
@@ -161,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `age` int(255) NOT NULL,
   `year_of_admission` int(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  KEY `year_of_admission` (`year_of_admission`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -203,14 +200,12 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 
 CREATE TABLE IF NOT EXISTS `teachers` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `user_id` int(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `age` int(100) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -278,6 +273,21 @@ CREATE TABLE IF NOT EXISTS `year_level` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `year_section`
+--
+
+CREATE TABLE IF NOT EXISTS `year_section` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `year_level_id` int(255) NOT NULL,
+  `section_id` int(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `year_level_id` (`year_level_id`),
+  KEY `section_id` (`section_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `year_sem`
 --
 
@@ -286,7 +296,18 @@ CREATE TABLE IF NOT EXISTS `year_sem` (
   `year` varchar(255) NOT NULL,
   `sem` int(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `year_sem`
+--
+
+INSERT INTO `year_sem` (`id`, `year`, `sem`) VALUES
+(1, '2012 - 2013', 1),
+(2, '2012 - 2013', 2),
+(3, '2013 - 2014', 1),
+(4, '2013 - 2014', 2),
+(5, '2014 - 2015', 1);
 
 --
 -- Constraints for dumped tables
@@ -296,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `year_sem` (
 -- Constraints for table `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `attendance`
@@ -320,8 +341,8 @@ ALTER TABLE `classes`
 -- Constraints for table `grades`
 --
 ALTER TABLE `grades`
-  ADD CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`),
-  ADD CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student_year_id`) REFERENCES `student_year` (`id`);
+  ADD CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student_year_id`) REFERENCES `student_year` (`id`),
+  ADD CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`);
 
 --
 -- Constraints for table `pces`
@@ -334,7 +355,8 @@ ALTER TABLE `pces`
 -- Constraints for table `students`
 --
 ALTER TABLE `students`
-  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `students_ibfk_2` FOREIGN KEY (`year_of_admission`) REFERENCES `year_sem` (`id`),
+  ADD CONSTRAINT `students_ibfk_3` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `student_year`
@@ -349,7 +371,7 @@ ALTER TABLE `student_year`
 -- Constraints for table `teachers`
 --
 ALTER TABLE `teachers`
-  ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `teachers_fk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `teacher_sections`
@@ -358,6 +380,13 @@ ALTER TABLE `teacher_sections`
   ADD CONSTRAINT `teacher_sections_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`id`),
   ADD CONSTRAINT `teacher_sections_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`),
   ADD CONSTRAINT `teacher_sections_ibfk_3` FOREIGN KEY (`year_sem_id`) REFERENCES `year_sem` (`id`);
+
+--
+-- Constraints for table `year_section`
+--
+ALTER TABLE `year_section`
+  ADD CONSTRAINT `year_section_ibfk_1` FOREIGN KEY (`year_level_id`) REFERENCES `year_level` (`id`),
+  ADD CONSTRAINT `year_section_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

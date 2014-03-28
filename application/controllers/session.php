@@ -5,6 +5,7 @@ class Session extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('user_model', 'user');
+		$this->load->model('teacher_model', 'teacher');
 	}
 
 	public function index() {
@@ -46,9 +47,10 @@ class Session extends CI_Controller {
 
 			$this->session->set_userdata('user_id', $user[0]->id);
 			$this->session->set_userdata('user_type', $user[0]->type);
-			// $this->session->set_flashdata('notice', $user[0]->username);
 
 			if ($teacher) {
+				$t = $this->teacher->getTeacher($this->session->userdata('user_id'));
+				$this->session->set_flashdata('notice', 'Welcome, ' . $t[0]->first_name . ' ' . $t[0]->last_name);
 				redirect('teacher/index');	
 			} else {
 				redirect('admin/index');
