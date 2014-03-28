@@ -19,11 +19,13 @@
 		</div>
 
 		<div class="main">
-			<h1>Biology 8</h1>
+			<h1><?= $subject[0]->subject_name ?></h1>
 
-			<div class="section" id="0">
-				<h3 onclick="toggle(0)">8 - Bartlett</h3>
-				<?= form_open('teacher/grade_section'); ?>
+			<?php foreach ($sections as $key => $value) : ?>
+				<div class="section" id="<?= $key ?>">
+				<h3 onclick="toggle(<?= $key ?>)"><?= $value->year_level . ' - ' . $value->section_name ?></h3>
+				<?php if (sizeof($students[$key]) > 0): ?>
+				<?= form_open('teacher/save_grade'); ?>
 					<div class="table">
 					<table>
 						<tr>
@@ -33,34 +35,17 @@
 							<td class="head2">3rd</td>
 							<td class="head2">4th</td>
 						</tr>
-						<tr>
-							<td class="head3">Lorem, Ipsum</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td class="head3">Sit, Amet</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td class="head3">Zumba, Exhersis</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td class="head3">Zz, Zzzz</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
+						
+						<?php foreach ($students[$key] as $v) : ?>
+							<tr>
+								<td class="head3"><?= $v->last_name .', '. $v->first_name ?></td>
+								<td><input type="text" name="grade[<?= $v->student_id ?>][0]"></td>
+								<td><input type="text" name="grade[<?= $v->student_id ?>][1]"></td>
+								<td><input type="text" name="grade[<?= $v->student_id ?>][2]"></td>
+								<td><input type="text" name="grade[<?= $v->student_id ?>][3]"></td>
+							</tr>
+						<?php endforeach ?>
+						
 					</table>
 					</div>
 
@@ -69,57 +54,11 @@
 					</div>
 
 				<?= form_close(); ?>
+				<?php else : ?>
+					<br><h3>This section is not composed of any student.</h3>
+				<?php endif; ?>
 			</div>
-
-			<div class="section" id="1">
-				<h3 onclick="toggle(1)">8 - Vajayjay</h3>
-				<?= form_open('teacher/grade_section'); ?>
-					<div class="table">
-					<table>
-						<tr>
-							<td></td>
-							<td class="head2">1st</td>
-							<td class="head2">2nd</td>
-							<td class="head2">3rd</td>
-							<td class="head2">4th</td>
-						</tr>
-						<tr>
-							<td class="head3">Lorem, Ipsum</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td class="head3">Sit, Amet</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td class="head3">Zumba, Exhersis</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
-						<tr>
-							<td class="head3">Zz, Zzzz</td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-						</tr>
-					</table>
-					</div>
-
-					<div class="field">
-						<input type="submit" class="floatleft" value="Save">
-					</div>
-
-				<?= form_close(); ?>
-			</div>
+			<?php endforeach; ?>
 
 		</div>
 

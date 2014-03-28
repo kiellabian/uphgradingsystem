@@ -35,22 +35,21 @@ class Teacher extends CI_Controller {
 		$this->load->view('teacher/grade', $data);
 	}
 
-	public function grade_section($class_id) {
-		$sections = $this->teacher->getSubjectSections($class_id);
+	public function grade_section($subject_id) {
+		$subject = $this->teacher->getSubject($subject_id);
+		$sections = $this->teacher->getSubjectSections($subject_id, $this->session->userdata('user_id'), $this->session->userdata('sys'));
 		$students = array();
 		foreach ($sections as $key => $value) {
 			$students[$key] = $this->teacher->getSectionStudents($value->section_id, $this->session->userdata('sys'));
 		}
+		$data = array('subject' => $subject, 'sections' => $sections, 'students' => $students);
+		$this->load->view('teacher/grade_section', $data);
+	}
 
+	public function save_grade() {
 		echo '<pre>';
-		print_r($sections);
+		print_r($_POST);
 		echo '</pre>';
-
-		echo '<pre>';
-		print_r($students);
-		echo '</pre>';
-
-		// $this->load->view('teacher/grade_section');
 	}
 
 	public function homeroom() {

@@ -24,7 +24,7 @@
 					<h3>You are not yet assigned to any subject.</h3>
 				<?php endif; ?>
 				<?php foreach ($subjects as $value) : ?>
-					<li><?= anchor('teacher/grade_section/'.$value->class_id, $value->subject_name); ?></li>
+					<li><?= anchor('teacher/grade_section/'.$value->subject_id, $value->subject_name); ?></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
