@@ -5,7 +5,7 @@
 		}
 
 		function getYearSem() {
-			$query = $this->db->query("SELECT * FROM year_sem ORDER BY year DESC,sem DESC");
+			$query = $this->db->query("SELECT * FROM year_sem INNER JOIN years ON year_sem.year_id = years.id ORDER BY years.year DESC, year_sem.sem DESC");
 			return $query->result();
 		}
 	}
