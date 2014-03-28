@@ -17,7 +17,7 @@
 					<select name="year">
 						<option value="-1" disabled selected>Chooose Semester</option>
 						<?php foreach ($sys as $value) : ?>
-							<option value="<?= $value->id ?>"><?= $value->year . (($value->sem == 1) ? ' 1st' : ' 2nd') . ' Sem' ?></option>
+							<option value="<?= $value->sys ?>"><?= $value->year . (($value->sem == 1) ? ' 1st' : ' 2nd') . ' Sem' ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>

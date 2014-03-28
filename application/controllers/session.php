@@ -72,7 +72,7 @@ class Session extends CI_Controller {
 			redirect('student/index');
 		} else {
 			redirect('session/student_login');
-		}		
+		}
 	}
 
 	public function logout() {
