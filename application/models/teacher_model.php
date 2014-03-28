@@ -15,9 +15,11 @@
 			$query = $this->db->query("SELECT  * FROM sections WHERE id = '$section_id'");
 			return $query->result();	
 		}
-
-		function getClassStudents($class_id) {
-			$query = $this->db->query("SELECT * FROM classes INNER JOIN student_year ON student_year.year_level_id = classes.year_level AND student_year.sys_id = classes.year_sem_id AND student_year.section_id = classes.section_id WHERE classes.id = '$class_id'");
+		function getSubjectSections($class_id, $teacher_id) {
+			$query = $this->db->query("SELECT  * FROM classes INNER JOIN sections ON classes.section_id = sections.id WHERE classes.teacher_id = '$teacher_id'");
+		}
+		function getSectionStudents($section, $year_sem_id) {
+			$query = $this->db->query("SELECT * FROM student_year INNER JOIN students ON student_year.student_id = students.id WHERE student_year.section_id = '$section' AND student_year.sys_id = '$year_sem_id'");
 			return $query->result();	
 
 		}
@@ -28,7 +30,7 @@
 		}
 
 		function getHomeroom($teacher_id) {
-			$query = $this->db->query("SELECT  * FROM teacher_sections WHERE teacher_id = '$teacher_id'");
+			$query = $this->db->query("SELECT  * FROM teacher_sections INNER JOIN sections ON teacher_sections.section_id = sections.id WHERE teacher_id = '$teacher_id'");
 			return $query->result();		
 		}
 
