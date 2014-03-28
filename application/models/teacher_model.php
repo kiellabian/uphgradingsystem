@@ -56,12 +56,13 @@
 		}
 
 		function updateGrades($student_id, $subject_id, $year_sem_id, $period, $value){
-			$query = $this->db->query("SELECT *,  student_year.id AS sy_id FROM students INNER JOIN student_year ON student_year.student_id = students.id WHERE student_year.sys_id = '$year_sem_id'");
+			$query = $this->db->query("SELECT *,  student_year.id AS sy_id FROM students INNER JOIN student_year ON student_year.student_id = students.id WHERE student_year.sys_id = '$year_sem_id' AND students.id = '$student_id'");
 			$result = $query->result();
 			$student_year = $result[0]->sy_id;
-			$query = $this->db->query("SELECT *, classes.id = class_id FROM grades INNER JOIN classes ON classes.id = grades.class_id WHERE classes.subject_id = '$subject_id' AND classes.year_sem_id = '$year_sem_id' AND grades.student_year_id = '$student_year' AND grades.period = '$period'");
+			$section_id = $result[0]->section_id;
+			$query = $this->db->query("SELECT * FROM classes WHERE subject_id = '$subject_id' AND year_sem_id = '$year_sem_id' AND section_id = '$section_id'");
 			$result = $query->result();
-			$class_id = $result[0]->class_id;
+			$class_id = $result[0]->id;
 			if (sizeof($result) == 0) {
 				$this->db->query("INSERT INTO grades(student_year_id, class_id, period, grade) VALUES ('$student_year', '$class_id', '$period', '$grade')");	
 			} else {
