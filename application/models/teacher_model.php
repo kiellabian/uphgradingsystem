@@ -16,7 +16,7 @@
 		}
 
 		function getSubjectSections($subject_id, $teacher_id, $year_sem_id) {
-			$query = $this->db->query("SELECT  * FROM classes INNER JOIN sections ON classes.section_id = section.id INNER JOIN year_level ON year_level.id = sections.year_level_id WHERE classes.subject_id = '$subject_id' AND classes.teacher_id = '$teacher_id' AND classes.year_sem_id = '$year_sem_id'");
+			$query = $this->db->query("SELECT  * FROM classes INNER JOIN sections ON classes.section_id = sections.id INNER JOIN year_level ON year_level.id = sections.year_level_id WHERE classes.subject_id = '$subject_id' AND classes.teacher_id = '$teacher_id' AND classes.year_sem_id = '$year_sem_id'");
 			return $query->result();
 		}
 		
@@ -45,14 +45,9 @@
 			return $query->result();			
 		}
 
-		function getGrades($student_id, $class_id) {
-			$query = $this->db->query("SELECT * FROM classes INNER JOIN student_year ON classes.year_sem_id = student_year.sys_id AND classes.section_id = student_year.section_id INNER JOIN grades ON grades.student_year_id = student_year.student_id AND grades.class_id = classes.id WHERE grades.class_id = '$class_id' AND grades.student_year_id = '$student_year'");
+		function getGrades($student_id, $subject_id, $year_sem_id) {
+			$query = $this->db->query("SELECT * FROM students INNER JOIN student_year ON students.id = student_year.student_id INNER JOIN grades ON grades.student_year_id = student_year.id INNER JOIN classes ON grades.class_id = classes.id INNER JOIN subjects ON classes.subject_id = subjects.id WHERE classes.subject_id = '$subject_id' AND classes.year_sem_id = '$year_sem_id' AND students.id = '$student_id'");
 			return $query->result();
-		}
-
-
-		function editGrades($student_year, $class_id, $period, $grade) {
-			$query = $this->db->query("UPDATE grades SET grade = '$grade' WHERE class_id = '$class_id' AND student_year_id = '$student_year' AND period = '$period'");	
 		}
 
 		function updatePces($student_id, $year_id, $trait_id, $period, $grade) {
