@@ -31,7 +31,7 @@
 		}
 
 		function getHomeroom($teacher_id, $year_sem_id) {
-			$query = $this->db->query("SELECT  * FROM teacher_sections INNER JOIN sections ON teacher_sections.section_id = sections.id WHERE teacher_id = '$teacher_id' AND year_sem_id = '$year_sem_id'");
+			$query = $this->db->query("SELECT  * FROM teacher_sections INNER JOIN sections ON teacher_sections.section_id = sections.id INNER JOIN year_level ON year_level.id = sections. year_level_id WHERE teacher_id = '$teacher_id' AND year_sem_id = '$year_sem_id'");
 			return $query->result();
 		}
 
