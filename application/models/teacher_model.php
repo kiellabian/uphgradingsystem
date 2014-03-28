@@ -19,8 +19,7 @@
 		}
 		function getSectionStudents($section, $year_sem_id) {
 			$query = $this->db->query("SELECT * FROM student_year INNER JOIN students ON student_year.student_id = students.id WHERE student_year.section_id = '$section' AND student_year.sys_id = '$year_sem_id'");
-			return $query->result();	
-
+			return $query->result();
 		}
 
 		function getTeacher($teacher_id) {
