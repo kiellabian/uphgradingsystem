@@ -55,7 +55,7 @@
 			return $query->result();
 		}
 
-		function updateGrades($student_id, $subject_id, $year_sem_id, $period, $value){
+		function updateGrades($student_id, $subject_id, $year_sem_id, $period, $grade){
 			$query = $this->db->query("SELECT *,  student_year.id AS sy_id FROM students INNER JOIN student_year ON student_year.student_id = students.id WHERE student_year.sys_id = '$year_sem_id' AND students.id = '$student_id'");
 			$result = $query->result();
 			$student_year = $result[0]->sy_id;
