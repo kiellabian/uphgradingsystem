@@ -40,6 +40,8 @@ class Teacher extends CI_Controller {
 	}
 
 	public function homeroom() {
+		$homeroom = $this->teacher->getHomeroom($this->session->userdata('user_id'));
+
 		$this->load->view('teacher/homeroom');
 	}
 
