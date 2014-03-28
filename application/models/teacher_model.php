@@ -58,7 +58,5 @@
 		function editAttendance($student_year, $month_id, $attendance_trait_id, $value) {
 			$query = $this->db->query("UPDATE grades SET value = '$value' WHERE class_id = '$class_id' AND student_year_id = '$student_year' AND month_id = '$month_id' AND attendance_trait_id = '$attendance_trait_id'");	
 		}
-
-				
 	}
 ?>
