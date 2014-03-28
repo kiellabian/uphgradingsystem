@@ -35,8 +35,22 @@ class Teacher extends CI_Controller {
 		$this->load->view('teacher/grade', $data);
 	}
 
-	public function grade_section($subject_id) {
-		$this->load->view('teacher/grade_section');
+	public function grade_section($class_id) {
+		$sections = $this->teacher->getSubjectSections($class_id);
+		$students = array();
+		foreach ($sections as $key => $value) {
+			$students[$key] = $this->teacher->getSectionStudents($value->section_id, $this->session->userdata('sys'));
+		}
+
+		echo '<pre>';
+		print_r($sections);
+		echo '</pre>';
+
+		echo '<pre>';
+		print_r($students);
+		echo '</pre>';
+
+		// $this->load->view('teacher/grade_section');
 	}
 
 	public function homeroom() {

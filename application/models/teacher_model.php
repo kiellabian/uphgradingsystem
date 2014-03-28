@@ -6,7 +6,7 @@
 		}
 
 		function getSubjects($teacher_id, $year_sem_id) {
-			$query = $this->db->query("SELECT  * FROM classes INNER JOIN subjects ON classes.subject_id = subjects.id WHERE classes.teacher_id = '$teacher_id' AND classes.year_sem_id = '$year_sem_id'");
+			$query = $this->db->query("SELECT  *, classes.id AS class_id FROM classes INNER JOIN subjects ON classes.subject_id = subjects.id WHERE classes.teacher_id = '$teacher_id' AND classes.year_sem_id = '$year_sem_id' GROUP BY subject_id");
 			return $query->result();
 		}
 		
